@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "noEmit": false,
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "lib": ["dom", "esnext"],
+    "skipLibCheck": true
+  },
+  "exclude": ["**/__tests__/**"]
+}

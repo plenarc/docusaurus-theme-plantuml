@@ -53,6 +53,14 @@ module.exports = {
 };
 ```
 
+### Example of description in markdown
+
+```pumld
+@startuml
+Alice -> Bob: Hello
+@enduml
+```
+
 ### Then build your Docusaurus project
 
 ```sh
