@@ -1,23 +1,22 @@
-import { deflateRawSync } from 'zlib';
-import { Buffer } from 'buffer';
+import pako from 'pako';
 
-// en: Custom Base64 alphabet for PlantUML
-// jp: PlantUML用のカスタムBase64アルファベット
+// Custom Base64 alphabet for PlantUML.
 const ALPHABET =
   '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
 
 /**
- * en: Function to encode buffer to custom Base64
- * jp: バッファをカスタムBase64にエンコードする関数
- * @param data en: Deflated data / jp: deflate済みのデータ
- * @returns en: Encoded string / jp: エンコード済み文字列
+ * Encodes a Uint8Array into a custom Base64 string.
+ * @param data - Deflated data array.
+ * @returns Encoded string.
  */
-function encode64(data) {
+function encode64(data: Uint8Array): string {
   let result = '';
   let current = 0;
   let bits = 0;
   for (let i = 0; i < data.length; i++) {
-    current = (current << 8) | data[i];
+    // Cast data[i] as number; data[i] is defined because i < data.length.
+    const byte: number = data[i] as number;
+    current = (current << 8) | byte;
     bits += 8;
     while (bits >= 6) {
       bits -= 6;
@@ -33,14 +32,12 @@ function encode64(data) {
 }
 
 /**
- * en: Function to compress and encode PlantUML source text
- * jp: PlantUMLのソーステキストを圧縮・エンコードする関数
- * @param text en: String of PlantUML description / jp: PlantUML記述の文字列
- * @returns en: Encoded string / jp: エンコード済み文字列
+ * Compresses and encodes the given PlantUML source text.
+ * @param text - PlantUML description string.
+ * @returns Encoded string.
  */
-export function encodePlantUML(text) {
-  // en: Compress with deflateRawSync without zlib header (No problem as it is Node environment at build time)
-  // jp: deflateRawSyncによりzlibヘッダなしで圧縮 (build時はNode環境なので問題ありません)
-  const deflated = deflateRawSync(Buffer.from(text, 'utf8'));
+export function encodePlantUML(text: string): string {
+  // Compress using pako.deflateRaw (synchronous, returns Uint8Array)
+  const deflated = pako.deflateRaw(text, { to: 'uint8array' });
   return encode64(deflated);
 }
