@@ -1,0 +1,54 @@
+{
+  // https://www.typescriptlang.org/ja/tsconfig/
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib",
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "${configDir}/lib/.tsbuildinfo",
+
+    /* Emit */
+    "target": "esnext",
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "module": "esnext",
+    "noEmit": false,
+
+    /* Strict Type-Checking Options */
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+
+    /* strict family */
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true,
+
+    /* Module Resolution */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/__tests__/**"]
+}
