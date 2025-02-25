@@ -1,8 +1,8 @@
 {
-  "name": "plugin-docusaurus-plantuml",
-  "version": "0.2.1",
+  "name": "docusaurus-theme-plantuml",
+  "version": "0.2.2",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
-  "author": "flatring",
+  "author": "plenarc",
   "license": "MIT",
   "keywords": [
     "docusaurus",
@@ -13,10 +13,10 @@
     "markdown",
     "uml"
   ],
-  "homepage": "https://github.com/flatring/plugin-docusaurus-plantuml/blob/main/README.md",
+  "homepage": "https://github.com/plenarc/docusaurus-theme-plantuml/blob/main/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flatring/plugin-docusaurus-plantuml/"
+    "url": "https://github.com/plenarc/docusaurus-theme-plantuml/"
   },
   "scripts": {
     "format": "npx @biomejs/biome format --write ./src",
