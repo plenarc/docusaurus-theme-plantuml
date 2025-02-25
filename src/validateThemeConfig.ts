@@ -1,30 +1,24 @@
 import type { ThemeConfigValidationContext } from '@docusaurus/types';
 import { Joi } from '@docusaurus/utils-validation';
-import type { ThemeConfig } from 'flatring/docusaurus-theme-plantuml';
+import type { ThemeConfig } from 'docusaurus-theme-plantuml';
 
 export const DEFAULT_THEME_CONFIG: ThemeConfig = {
   plantuml: {
-    theme: {
-      dark: 'dark',
-      light: 'default',
-    },
-    options: {},
+    serverUrlLight: 'https://www.plantuml.com/plantuml/svg/',
+    serverUrlDark: 'https://www.plantuml.com/plantuml/dsvg/',
   },
 };
 
 export const Schema = Joi.object<ThemeConfig>({
   plantuml: Joi.object({
-    theme: Joi.object({
-      dark: Joi.string().default(DEFAULT_THEME_CONFIG.plantuml.theme.dark),
-      light: Joi.string().default(DEFAULT_THEME_CONFIG.plantuml.theme.light),
-    }).default(DEFAULT_THEME_CONFIG.plantuml.theme),
-    options: Joi.object().default(DEFAULT_THEME_CONFIG.plantuml.options),
+    serverUrlLight: Joi.string().default(DEFAULT_THEME_CONFIG.plantuml.serverUrlLight),
+    serverUrlDark: Joi.string().default(DEFAULT_THEME_CONFIG.plantuml.serverUrlDark),
   }).default(DEFAULT_THEME_CONFIG.plantuml),
 });
 
 export function validateThemeConfig({
   validate,
   themeConfig,
-}: ThemeConfigValidationContext<ThemeConfig>): ThemeConfig {
+}: ThemeConfigValidationContext<typeof DEFAULT_THEME_CONFIG>): typeof DEFAULT_THEME_CONFIG {
   return validate(Schema, themeConfig);
 }
