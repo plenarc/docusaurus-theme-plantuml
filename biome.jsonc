@@ -1,3 +1,4 @@
+// https://biomejs.dev/ja/reference/configuration/
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "formatter": {
@@ -5,6 +6,7 @@
   },
   "javascript": {
     "formatter": {
+      "lineWidth": 100,
       "semicolons": "always",
       "quoteStyle": "single",
       "trailingCommas": "all"
