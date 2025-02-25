@@ -8,16 +8,13 @@ import React, { isValidElement, type ReactNode } from 'react';
 const validLangs = ['pumld', 'plantuml-diagram'];
 
 function maybeStringifyChildren(children: ReactNode): ReactNode {
-  if (React.Children.toArray(children).some((el) => isValidElement(el))) {
+  if (React.Children.toArray(children).some((el: ReactNode) => isValidElement(el))) {
     return children;
   }
   return Array.isArray(children) ? children.join('') : (children as string);
 }
 
-export default function CodeBlock({
-  children: rawChildren,
-  ...props
-}: Props): ReactNode {
+export default function CodeBlock({ children: rawChildren, ...props }: Props): ReactNode {
   const isBrowser = useIsBrowser();
   const children = maybeStringifyChildren(rawChildren);
   const language = props.className?.replace(/^language-/, '') || '';
@@ -30,8 +27,7 @@ export default function CodeBlock({
   }
 
   // Fallback: render the original CodeBlock content.
-  const CodeBlockComp =
-    typeof children === 'string' ? StringContent : ElementContent;
+  const CodeBlockComp = typeof children === 'string' ? StringContent : ElementContent;
   return (
     <CodeBlockComp key={String(isBrowser)} {...props}>
       {children as string}
