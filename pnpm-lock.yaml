@@ -20,9 +20,9 @@ importers:
       '@docusaurus/types':
         specifier: 3.7.0
         version: 3.7.0(acorn@8.14.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@docusaurus/utils-validation':
-        specifier: 3.7.0
-        version: 3.7.0(acorn@8.14.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      joi:
+        specifier: ^17.13.3
+        version: 17.13.3
       pako:
         specifier: ^2.1.0
         version: 2.1.0
