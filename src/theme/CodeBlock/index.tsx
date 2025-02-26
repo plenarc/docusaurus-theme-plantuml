@@ -1,4 +1,3 @@
-import useIsBrowser from '@docusaurus/useIsBrowser';
 import type { Props } from '@theme/CodeBlock';
 import ElementContent from '@theme/CodeBlock/Content/Element';
 import StringContent from '@theme/CodeBlock/Content/String';
@@ -15,22 +14,17 @@ function maybeStringifyChildren(children: ReactNode): ReactNode {
 }
 
 export default function CodeBlock({ children: rawChildren, ...props }: Props): ReactNode {
-  const isBrowser = useIsBrowser();
   const children = maybeStringifyChildren(rawChildren);
   const language = props.className?.replace(/^language-/, '') || '';
-  console.log('[PlantUML Theme] Rendering CodeBlock, language:', language);
+  console.log('[PlantUML Theme] Rendering CodeBlock, language:', language); // debug
 
   if (validLangs.includes(language)) {
-    console.log('[PlantUML Theme] Rendering PlantUML for code:', children);
+    console.log('[PlantUML Theme] Rendering PlantUML for code:', children); // debug
     // When language is one of the valid PlantUML keywords, render the PlantUML component.
     return <PlantUML value={children as string} />;
   }
 
   // Fallback: render the original CodeBlock content.
   const CodeBlockComp = typeof children === 'string' ? StringContent : ElementContent;
-  return (
-    <CodeBlockComp key={String(isBrowser)} {...props}>
-      {children as string}
-    </CodeBlockComp>
-  );
+  return <CodeBlockComp {...props}>{children as string}</CodeBlockComp>;
 }

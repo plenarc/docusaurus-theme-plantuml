@@ -6,7 +6,9 @@ declare module 'docusaurus-theme-plantuml' {
 
   export interface ThemeConfig {
     plantuml: {
+      /** Server URL for light mode */
       serverUrlLight: string;
+      /** Server URL for dark mode */
       serverUrlDark: string;
     };
   }
