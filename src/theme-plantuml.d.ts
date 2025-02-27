@@ -1,16 +1,18 @@
 /// <reference types="@docusaurus/module-type-aliases" />
 
 declare module 'docusaurus-theme-plantuml' {
+  import type { ThemeConfig as DocusaurusThemeConfig } from '@docusaurus/theme-common';
   import type { DeepPartial } from 'utility-types';
   import type { Plugin } from '@docusaurus/types';
 
-  export interface ThemeConfig {
-    plantuml: {
-      /** Server URL for light mode */
-      serverUrlLight: string;
-      /** Server URL for dark mode */
-      serverUrlDark: string;
-    };
+  export interface ThemeConfig extends DocusaurusThemeConfig {
+    plantuml?: PlantumlConfig;
+  }
+  export interface PlantumlConfig {
+    /** Server URL for light mode */
+    serverUrlLight: string;
+    /** Server URL for dark mode */
+    serverUrlDark: string;
   }
 
   export type UserThemeConfig = DeepPartial<ThemeConfig>;
