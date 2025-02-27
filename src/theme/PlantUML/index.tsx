@@ -6,6 +6,7 @@ import {
 } from '@docusaurus/theme-common';
 import type { ReactNode } from 'react';
 import { encodePlantUML } from '../../encoder';
+import type { PlantumlConfig, ThemeConfig } from '../../theme-plantuml';
 
 export interface PlantUMLProps {
   value: string;
@@ -17,14 +18,15 @@ export interface PlantUMLProps {
  */
 function PlantUMLRenderer({ value }: PlantUMLProps): ReactNode {
   const { colorMode } = useColorMode();
-  const themeConfig = useThemeConfig();
-  console.log('[PlantUML] Theme config:', themeConfig); // debug
-  // The structure of the theme configuration to be retrieved matches that defined in validateThemeConfig.
-  const plantumlConfig = (themeConfig as any).plantuml || {};
-  const serverUrlLight = plantumlConfig.serverUrlLight || 'https://www.plantuml.com/plantuml/svg/';
-  const serverUrlDark = plantumlConfig.serverUrlDark || 'https://www.plantuml.com/plantuml/dsvg/';
-  console.log('[PlantUML] Theme config details:', { serverUrlLight, serverUrlDark, colorMode }); // debug
-  const serverUrl = colorMode === 'dark' ? serverUrlDark : serverUrlLight;
+  const docusaurusThemeConfig = useThemeConfig();
+  console.log('[PlantUML] Theme config:', docusaurusThemeConfig); // debug
+  const { plantuml }: ThemeConfig = docusaurusThemeConfig as ThemeConfig;
+  const plantumlConfig: PlantumlConfig = plantuml || {
+    serverUrlLight: 'https://www.plantuml.com/plantuml/svg/',
+    serverUrlDark: 'https://www.plantuml.com/plantuml/dsvg/',
+  };
+  const serverUrl =
+    colorMode === 'dark' ? plantumlConfig.serverUrlDark : plantumlConfig.serverUrlLight;
 
   const trimmedCode = value.trim();
   const encoded = encodePlantUML(trimmedCode);

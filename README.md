@@ -1,6 +1,6 @@
 # docusaurus-theme-plantuml
 
-plugin for displaying plantuml in docusaurus.
+Theme for displaying PlantUML in docusaurus.
 
 [![MIT Licence](https://img.shields.io/github/license/plenarc/docusaurus-theme-plantuml)](#)
 
@@ -17,6 +17,12 @@ plugin for displaying plantuml in docusaurus.
     1. 最初、pluginとして作ろうとしましたがうまくいかなかったのでテーマとして作っています
 1. デフォルト設定ではhttps通信でplantuml serverにレンダリングさせた結果を表示します
 
+## image
+1. light mode
+    1. ![img](img/lightmode.png)
+1. dark mode
+    1. ![img](img/darkmode.png)
+
 ## Precautions before use
 ### en
 1. The default rendering destination is the official PlantUML server.
@@ -27,7 +33,7 @@ plugin for displaying plantuml in docusaurus.
 
 ### ja
 1. デフォルトのレンダリング先はPlantUML公式のサーバーです。
-1. 公式とはいえ、httpを介してレンダリングしているので、機密情報を扱う場合には自分でサーバーを立てるなどして、自己責任のうえ、活用してください。
+1. 公式とはいえ、httpを介してレンダリングしているので、機密情報を扱う場合には自分でサーバーを立てるなどして、自己責任のうえ活用してください。
 1. 以下を参照
     1. plantuml.com/ja/faq - https://plantuml.com/ja/faq
         1. PlantUML Serverで生成した画像はいつまで保持されますか?
@@ -127,10 +133,14 @@ yarn run build
 
 ### en
 1. by default, the official PlantUML server renders the image in SVG format
+1. docker is recommended if you want to prepare your own PlantUML server. specify its server URL as `serverUrlLight` etc.
+    1. reference: dockerhub - https://hub.docker.com/r/plantuml/plantuml-server
 1. for example, if you want to render in PNG format, configure as follows
 
 ### ja
 1. デフォルトはPlantUML公式のサーバーでSVG形式にレンダリングしています
+1. 自分でPlantUMLサーバーを用意するのであればdockerがオススメです。そのサーバーURLを`serverUrlLight`などに指定してください
+    1. 参考: dockerhub - https://hub.docker.com/r/plantuml/plantuml-server
 1. 例えばPNG形式でレンダリングしたければ以下のように設定します
 
 ```js
@@ -144,6 +154,9 @@ module.exports = {
   ],
 };
 ```
+
+- Note that the destination is `themeConfig`, not `themes`.
+- 設定先が `themes` ではなく、 `themeConfig` であることに注意してください
 
 ## Changelog
 Checkout the [releases](https://github.com/plenarc/docusaurus-theme-plantuml/releases) page for changelog.

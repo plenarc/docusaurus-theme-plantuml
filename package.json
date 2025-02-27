@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-theme-plantuml",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
   "author": "plenarc",
   "license": "MIT",
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/plenarc/docusaurus-theme-plantuml/blob/main/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plenarc/docusaurus-theme-plantuml/"
+    "url": "git+https://github.com/plenarc/docusaurus-theme-plantuml.git"
   },
   "scripts": {
     "format": "npx @biomejs/biome format --write ./src",
@@ -47,7 +47,7 @@
     "@docusaurus/module-type-aliases": "^3.7.0",
     "@docusaurus/theme-common": "^3.7.0",
     "@docusaurus/types": "3.7.0",
-    "@docusaurus/utils-validation": "3.7.0",
+    "joi": "^17.13.3",
     "pako": "^2.1.0"
   },
   "devDependencies": {
@@ -61,7 +61,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=22.0"
   },
   "packageManager": "pnpm@10.2.0+sha512.0d27364e0139c6aadeed65ada153135e0ca96c8da42123bd50047f961339dc7a758fc2e944b428f52be570d1bd3372455c1c65fa2e7aa0bfbf931190f9552001"
 }
