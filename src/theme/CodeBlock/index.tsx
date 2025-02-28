@@ -16,10 +16,8 @@ function maybeStringifyChildren(children: ReactNode): ReactNode {
 export default function CodeBlock({ children: rawChildren, ...props }: Props): ReactNode {
   const children = maybeStringifyChildren(rawChildren);
   const language = props.className?.replace(/^language-/, '') || '';
-  console.log('[PlantUML Theme] Rendering CodeBlock, language:', language); // debug
 
   if (validLangs.includes(language)) {
-    console.log('[PlantUML Theme] Rendering PlantUML for code:', children); // debug
     // When language is one of the valid PlantUML keywords, render the PlantUML component.
     return <PlantUML value={children as string} />;
   }
