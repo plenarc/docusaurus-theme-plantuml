@@ -13,6 +13,8 @@ declare module 'docusaurus-theme-plantuml' {
     serverUrlLight: string;
     /** Server URL for dark mode */
     serverUrlDark: string;
+    /** debug mode */
+    debug?: boolean;
   }
 
   export type UserThemeConfig = DeepPartial<ThemeConfig>;
