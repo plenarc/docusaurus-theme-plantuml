@@ -19,12 +19,15 @@ export interface PlantUMLProps {
 function PlantUMLRenderer({ value }: PlantUMLProps): ReactNode {
   const { colorMode } = useColorMode();
   const docusaurusThemeConfig = useThemeConfig();
-  console.log('[PlantUML] Theme config:', docusaurusThemeConfig); // debug
   const { plantuml }: ThemeConfig = docusaurusThemeConfig as ThemeConfig;
   const plantumlConfig: PlantumlConfig = plantuml || {
     serverUrlLight: 'https://www.plantuml.com/plantuml/svg/',
     serverUrlDark: 'https://www.plantuml.com/plantuml/dsvg/',
+    debug: false,
   };
+  if (plantumlConfig.debug) {
+    console.log('[PlantUML] Theme config - plantuml:', plantuml);
+  }
   const serverUrl =
     colorMode === 'dark' ? plantumlConfig.serverUrlDark : plantumlConfig.serverUrlLight;
 

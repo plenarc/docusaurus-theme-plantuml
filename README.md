@@ -130,6 +130,7 @@ yarn run build
 | ---------------- | --------- | ----------------------------------------- | ------------------------- |
 | `serverUrlLight` | `string`  | `https://www.plantuml.com/plantuml/svg/`  | Server URL for light mode |
 | `serverUrlDark`  | `string`  | `https://www.plantuml.com/plantuml/dsvg/` | Server URL for dark mode  |
+| `debug`          | `boolean` | `false`                                   | Turn on debug log output  |
 
 ### en
 1. by default, the official PlantUML server renders the image in SVG format
@@ -148,8 +149,8 @@ module.exports = {
   // ...other settings
   themeConfig: [
     plantuml: {
-        serverUrlLight: 'https://www.plantuml.com/plantuml/png/',
-        serverUrlDark: 'https://www.plantuml.com/plantuml/dpng/',
+      serverUrlLight: 'https://www.plantuml.com/plantuml/png/',
+      serverUrlDark: 'https://www.plantuml.com/plantuml/dpng/',
     },
   ],
 };
