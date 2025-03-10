@@ -1,10 +1,11 @@
 # docusaurus-theme-plantuml
 
+
 Theme for displaying PlantUML in docusaurus.
 
-[![MIT Licence](https://img.shields.io/github/license/plenarc/docusaurus-theme-plantuml)](#)
-
-[![npm version](https://badge.fury.io/js/docusaurus-theme-plantuml.svg)](https://www.npmjs.com/package/docusaurus-theme-plantuml)
+[![npm version][npm-image]][npm-url]
+[![npm downlads][npm-downloads-image]][npm-url]
+[![License][license-image]][license-url]
 
 ## What is this?
 ### en
@@ -161,3 +162,9 @@ module.exports = {
 
 ## Changelog
 Checkout the [releases](https://github.com/plenarc/docusaurus-theme-plantuml/releases) page for changelog.
+
+[npm-image]: https://img.shields.io/npm/v/docusaurus-theme-plantuml.svg
+[npm-url]: https://www.npmjs.com/package/docusaurus-theme-plantuml
+[npm-downloads-image]: https://img.shields.io/npm/dw/docusaurus-theme-plantuml.svg
+[license-image]: https://img.shields.io/github/license/plenarc/docusaurus-theme-plantuml.svg
+[license-url]: https://github.com/plenarc/docusaurus-theme-plantuml/blob/main/LICENSE
