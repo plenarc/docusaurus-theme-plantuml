@@ -167,3 +167,4 @@ Checkout the [releases](https://github.com/plenarc/docusaurus-theme-plantuml/rel
 [npm-url]: https://www.npmjs.com/package/docusaurus-theme-plantuml
 [npm-downloads-image]: https://img.shields.io/npm/dw/docusaurus-theme-plantuml.svg
 [license-image]: https://img.shields.io/github/license/plenarc/docusaurus-theme-plantuml.svg
+[license-url]: https://github.com/plenarc/docusaurus-theme-plantuml/blob/main/LICENSE
