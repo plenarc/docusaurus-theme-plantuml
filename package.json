@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-theme-plantuml",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
   "author": "plenarc",
   "license": "MIT",
@@ -29,7 +29,11 @@
   },
   "main": "lib/index.js",
   "types": "src/theme-plantuml.d.ts",
-  "files": ["lib", "README.md", "LICENSE"],
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
   "exports": {
     "./lib/*": "./lib/*",
@@ -43,18 +47,19 @@
     "access": "public"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.7.0",
-    "@docusaurus/module-type-aliases": "^3.7.0",
-    "@docusaurus/theme-common": "^3.7.0",
-    "@docusaurus/types": "3.7.0",
+    "@docusaurus/core": "^3.8.1",
+    "@docusaurus/module-type-aliases": "^3.8.1",
+    "@docusaurus/theme-common": "^3.8.1",
+    "@docusaurus/types": "3.8.1",
     "joi": "^17.13.3",
     "pako": "^2.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@docusaurus/tsconfig": "^3.7.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4"
+    "@biomejs/biome": "2.1.2",
+    "@docusaurus/tsconfig": "^3.8.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

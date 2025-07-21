@@ -7,9 +7,7 @@ export interface PluginOptions {
   serverUrlDark?: string;
 }
 
-export default function themePlantUML(options: PluginOptions = {}): Plugin<void> {
-  // const { serverUrlLight, serverUrlDark } = options;
-
+export default function themePlantUML(_options: PluginOptions = {}): Plugin<void> {
   return {
     name: 'docusaurus-theme-plantuml',
 
