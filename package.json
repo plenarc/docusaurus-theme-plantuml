@@ -1,5 +1,5 @@
 {
-  "name": "@plenarc/docusaurus-theme-plantuml",
+  "name": "docusaurus-theme-plantuml",
   "version": "0.2.8",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
   "author": "plenarc",
