@@ -1,8 +1,7 @@
 import pako from 'pako';
 
 // Custom Base64 alphabet for PlantUML.
-const ALPHABET =
-  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
+const ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
 
 /**
  * Encodes a Uint8Array into a custom Base64 string.
