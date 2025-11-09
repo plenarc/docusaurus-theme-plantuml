@@ -42,23 +42,21 @@ Theme for displaying PlantUML in docusaurus.
 ## How to Use?
 ### install
 
-```sh
+```bash
 pnpm add docusaurus-theme-plantuml
 ```
 
 or
 
-```sh
+```bash
 npm install plugin-docusaurus-plantuml
 ```
 
 or
 
-```sh
+```bash
 yarn add plugin-docusaurus-plantuml
 ```
-
-
 
 ### How to set up on docusaurus
 
@@ -98,11 +96,13 @@ module.exports = {
 ```
 
 #### en
+
 1. We also take into account the case where you want to display PlantUML code as markdown and not “plantuml” to render it when
     1. `plantuml-diagram`
     1. `pumld`
 
 #### ja
+
 1. markdownとしてPlantUMLのコードを表示したい場合も考慮して「plantuml」ではなく、以下の場合にレンダリングするようにしています。
     1. `plantuml-diagram`
     1. `pumld`
@@ -159,6 +159,79 @@ module.exports = {
 
 - Note that the destination is `themeConfig`, not `themes`.
 - 設定先が `themes` ではなく、 `themeConfig` であることに注意してください
+
+## Compatibility
+### en
+1. This theme is compatible with Docusaurus v3.9.2 and later versions
+1. Tested with Node.js 18.x and later
+1. Package manager: pnpm (recommended), npm, or yarn
+
+### ja
+1. このテーマはDocusaurus v3.9.2以降のバージョンに対応しています
+1. Node.js 18.x以降でテスト済み
+1. パッケージマネージャー: pnpm(推奨)、npm、またはyarn
+
+## Troubleshooting
+### npm configuration warnings
+#### en
+1. If you encounter warnings like "Unknown env config" when running pnpm commands, check your `.npmrc` files
+1. Common deprecated settings that cause warnings:
+    1. `verify-deps-before-run` - This setting is deprecated and should be removed
+    1. `_jsr-registry` - This setting is no longer supported
+1. Solution:
+    1. Check for `.npmrc` files in both project root and user home directory (`~/.npmrc`)
+    1. Remove or comment out deprecated settings
+    1. Run `pnpm run format` again to verify warnings are resolved
+
+#### ja
+1. pnpmコマンド実行時に「Unknown env config」のような警告が表示される場合、`.npmrc`ファイルを確認してください
+1. 警告の原因となる一般的な非推奨設定:
+    1. `verify-deps-before-run` - この設定は非推奨のため削除してください
+    1. `_jsr-registry` - この設定はサポートされなくなりました
+1. 解決方法:
+    1. プロジェクトルートとユーザーホームディレクトリ(`~/.npmrc`)の両方で`.npmrc`ファイルを確認
+    1. 非推奨設定を削除またはコメントアウト
+    1. `pnpm run format`を再実行して警告が解消されたことを確認
+
+### Biome configuration issues
+#### en
+1. If formatting or linting fails, verify your `biome.jsonc` configuration file
+1. Common issues:
+    1. Invalid JSON syntax in configuration file
+    1. Missing or incorrect formatter settings
+    1. Incompatible rule configurations
+1. Solution:
+    1. Validate JSON syntax using a JSON validator
+    1. Check Biome documentation for correct configuration format
+    1. Run `pnpm run lint` to identify specific configuration problems
+
+#### ja
+1. フォーマットやリントが失敗する場合、`biome.jsonc`設定ファイルを確認してください
+1. よくある問題:
+    1. 設定ファイルの無効なJSON構文
+    1. フォーマッター設定の欠落または誤り
+    1. 互換性のないルール設定
+1. 解決方法:
+    1. JSONバリデーターを使用して構文を検証
+    1. Biomeドキュメントで正しい設定フォーマットを確認
+    1. `pnpm run lint`を実行して具体的な設定問題を特定
+
+### Build or test failures
+#### en
+1. If build or test commands fail after updating dependencies:
+    1. Clear node_modules and reinstall: `rm -rf node_modules && pnpm install`
+    1. Clear build cache: `rm -rf lib && pnpm run build`
+    1. Verify TypeScript configuration is compatible with updated dependencies
+    1. Check for breaking changes in dependency changelogs
+1. For persistent issues, check the [issues](https://github.com/plenarc/docusaurus-theme-plantuml/issues) page or create a new issue
+
+#### ja
+1. 依存関係更新後にビルドやテストコマンドが失敗する場合:
+    1. node_modulesをクリアして再インストール: `rm -rf node_modules && pnpm install`
+    1. ビルドキャッシュをクリア: `rm -rf lib && pnpm run build`
+    1. TypeScript設定が更新された依存関係と互換性があることを確認
+    1. 依存関係の変更履歴で破壊的変更を確認
+1. 問題が解決しない場合は、[issues](https://github.com/plenarc/docusaurus-theme-plantuml/issues)ページを確認するか、新しいissueを作成してください
 
 ## Changelog
 Checkout the [releases](https://github.com/plenarc/docusaurus-theme-plantuml/releases) page for changelog.
