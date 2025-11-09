@@ -1,0 +1,23 @@
+# https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.yaml
+MD013: false # Disable line length limit - 1行内の文字長さ制限解除
+MD022: # Zero blank lines at end of heading - 章最後の空白ゼロ
+  lines_above: 0
+  lines_below: 0
+MD024: # Duplicate heading prohibition - 章タイトルの重複禁止
+  siblings_only: true # But allow in different sections - ただし、別の章なら可
+MD025: false # Cannot fix heading 1 on first line - 章1を1行目に固定できないから無効化
+MD031:
+  list_items: false # No blank lines around code blocks in lists - リスト内のコードブロック前後の空白はなしでOK
+MD032: false # No blank line judgment around lists - リスト前後の空白判定なし
+MD033: # Prohibit HTML tags except specified ones - 指定したhtmlタグ以外の利用禁止
+  allowed_elements:
+    - br
+    - code
+    - img
+    - span
+    - details
+    - summary
+    - CodeBlock
+MD034: false
+MD038: false # Allow spaces in code blocks - コードブロック内のスペース可
+MD040: false # Remove mandatory language specification for code blocks - コードブロックの言語指定強制を解除
