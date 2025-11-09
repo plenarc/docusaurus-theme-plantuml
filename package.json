@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-theme-plantuml",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
   "author": "plenarc",
   "license": "MIT",
