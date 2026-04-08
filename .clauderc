@@ -1,0 +1,90 @@
+# Claude Code Configuration
+
+## Language & Communication / 言語とコミュニケーション
+
+### Response Language
+- All responses in chat must be in Japanese (日本語で応答)
+- Use polite language (です/ます調), avoid casual tone
+- Provide clear, practical information without redundancy
+- Answer questions directly based on facts, not speculation
+
+### Code & Documentation Language Rules
+- Code comments: English only
+- Git commit messages: English first, then Japanese
+- Markdown files (*.md): Both English and Japanese
+  - English first, Japanese second
+  - Main titles (#): English only is acceptable
+  - Section structure example:
+    ```markdown
+    ## Section Title
+    ### en
+    1. English description here
+
+    ### ja
+    1. 日本語での説明
+    ```
+
+## Code Output Rules / コード出力ルール
+
+### General Principles
+- Provide minimal, executable code only
+- No redundant code or unnecessary features
+- Avoid verbose explanations or repetition
+
+### Markdown Formatting
+- Use numbered lists (`1.`) for all bullet points
+  - Exception: Checklists can use `- [ ]`
+- Use half-width characters only (禁止: （ → use (, ： → use :)
+- Indentation: Always 4 spaces
+- Code blocks and examples can be shared between languages
+
+## Git Commit Messages / コミットメッセージ
+
+### Required Format
+- Start with Japanese verb: 追加, 修正, 更新, 削除, 変更
+- Keep under 50 characters
+- NO English prefixes (chore, feat, fix, etc.)
+- Body also in Japanese
+
+### Correct Examples
+- `依存関係を最新版に更新`
+- `Docusaurus設定の非推奨オプションを修正`
+
+### Incorrect (DO NOT USE)
+- `chore(deps): Update dependencies`
+- `feat: Add new feature`
+
+## Environment / 環境
+
+### Development Environment
+- Running on WSL2 (Ubuntu)
+- Always use Linux/bash commands
+- NEVER use PowerShell or Windows commands (Get-ChildItem, Remove-Item, etc.)
+
+### Command Examples
+- List files: `ls -la`
+- Delete file: `rm file.txt`
+- Delete directory: `rm -rf dir`
+- Copy file: `cp source.txt dest.txt`
+- Create directory: `mkdir -p dir`
+- View file: `cat file.txt`
+- Search: `grep -r "pattern" .`
+- Chain commands: `&&`
+
+## File Operations / ファイル操作
+
+- Clearly state the purpose when creating/editing files
+- Explain changes concisely
+- Confirm before making changes that need backup
+
+## Error Handling / エラー対応
+
+- Identify root cause specifically
+- Provide step-by-step solutions
+- Suggest alternatives when available
+
+## Progress Management / 進行管理
+
+- Clearly communicate work progress
+- Show concrete next steps
+- Explicitly request user approval when needed

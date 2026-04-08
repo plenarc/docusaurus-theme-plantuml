@@ -15,6 +15,8 @@ declare module 'docusaurus-theme-plantuml' {
     serverUrlDark: string;
     /** debug mode */
     debug?: boolean;
+    /** Whether to render `plantuml` and `puml` code blocks as PlantUML diagrams. Defaults to `false`. */
+    renderCodeBlockPuml?: boolean;
   }
 
   export type UserThemeConfig = DeepPartial<ThemeConfig>;

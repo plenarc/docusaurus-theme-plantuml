@@ -1,10 +1,12 @@
+import { useThemeConfig } from '@docusaurus/theme-common';
 import type { Props } from '@theme/CodeBlock';
 import ElementContent from '@theme/CodeBlock/Content/Element';
 import StringContent from '@theme/CodeBlock/Content/String';
 import PlantUML from '@theme/PlantUML';
 import React, { isValidElement, type ReactNode } from 'react';
+import type { ThemeConfig } from '../../theme-plantuml';
 
-const validLangs = ['pumld', 'plantuml-diagram'];
+const baseValidLangs = ['pumld', 'plantuml-diagram'];
 
 function maybeStringifyChildren(children: ReactNode): ReactNode {
   if (React.Children.toArray(children).some((el: ReactNode) => isValidElement(el))) {
@@ -16,6 +18,10 @@ function maybeStringifyChildren(children: ReactNode): ReactNode {
 export default function CodeBlock({ children: rawChildren, ...props }: Props): ReactNode {
   const children = maybeStringifyChildren(rawChildren);
   const language = props.className?.replace(/^language-/, '') || '';
+  const { plantuml } = useThemeConfig() as ThemeConfig;
+  const validLangs = plantuml?.renderCodeBlockPuml
+    ? [...baseValidLangs, 'plantuml', 'puml']
+    : baseValidLangs;
 
   if (validLangs.includes(language)) {
     // When language is one of the valid PlantUML keywords, render the PlantUML component.
