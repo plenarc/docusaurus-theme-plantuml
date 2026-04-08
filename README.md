@@ -97,15 +97,21 @@ module.exports = {
 
 #### en
 
-1. We also take into account the case where you want to display PlantUML code as markdown and not “plantuml” to render it when
+1. To avoid breaking existing syntax-highlighted code blocks, rendering is triggered by the following keywords by default:
     1. `plantuml-diagram`
     1. `pumld`
+1. With `renderCodeBlockPuml: true` enabled, the following keywords are also recognized:
+    1. `plantuml`
+    1. `puml`
 
 #### ja
 
-1. markdownとしてPlantUMLのコードを表示したい場合も考慮して「plantuml」ではなく、以下の場合にレンダリングするようにしています。
+1. 既存のシンタックスハイライト付きコードブロックを壊さないよう、デフォルトでは以下のキーワードでレンダリングするようにしています:
     1. `plantuml-diagram`
     1. `pumld`
+1. `renderCodeBlockPuml: true` を設定した場合は、以下のキーワードも追加で認識されます:
+    1. `plantuml`
+    1. `puml`
 
 ### Then build your Docusaurus project
 
@@ -127,11 +133,12 @@ yarn run build
 
 ## Options available
 
-| Option           | Type      | Default                                   | Description               |
-| ---------------- | --------- | ----------------------------------------- | ------------------------- |
-| `serverUrlLight` | `string`  | `https://www.plantuml.com/plantuml/svg/`  | Server URL for light mode |
-| `serverUrlDark`  | `string`  | `https://www.plantuml.com/plantuml/dsvg/` | Server URL for dark mode  |
-| `debug`          | `boolean` | `false`                                   | Turn on debug log output  |
+| Option                 | Type      | Default                                   | Description                                                             |
+| ---------------------- | --------- | ----------------------------------------- | ----------------------------------------------------------------------- |
+| `serverUrlLight`       | `string`  | `https://www.plantuml.com/plantuml/svg/`  | Server URL for light mode                                               |
+| `serverUrlDark`        | `string`  | `https://www.plantuml.com/plantuml/dsvg/` | Server URL for dark mode                                                |
+| `renderCodeBlockPuml`  | `boolean` | `false`                                   | Render `plantuml` and `puml` code blocks as PlantUML diagrams (opt-in) |
+| `debug`                | `boolean` | `false`                                   | Turn on debug log output                                                |
 
 ### en
 1. by default, the official PlantUML server renders the image in SVG format
@@ -144,6 +151,44 @@ yarn run build
 1. 自分でPlantUMLサーバーを用意するのであればdockerがオススメです。そのサーバーURLを`serverUrlLight`などに指定してください
     1. 参考: dockerhub - https://hub.docker.com/r/plantuml/plantuml-server
 1. 例えばPNG形式でレンダリングしたければ以下のように設定します
+
+### renderCodeBlockPuml
+
+#### en
+1. by default, `plantuml` and `puml` language keywords are **not** treated as PlantUML diagrams
+    1. this preserves backward compatibility — existing sites that use `` ```plantuml `` for syntax-highlighted code will continue to work as-is
+1. set `renderCodeBlockPuml: true` to opt in to rendering `` ```plantuml `` and `` ```puml `` code blocks as PlantUML diagrams
+
+```js
+module.exports = {
+  // ...other settings
+  themeConfig: {
+    plantuml: {
+      renderCodeBlockPuml: true,
+    },
+  },
+};
+```
+
+1. when enabled, all four keywords trigger PlantUML rendering: `pumld`, `plantuml-diagram`, `plantuml`, `puml`
+
+#### ja
+1. デフォルトでは `plantuml` および `puml` 言語キーワードはPlantUMLダイアグラムとして扱われ**ません**
+    1. 後方互換性のための設定です。既存サイトで `` ```plantuml `` をシンタックスハイライト付きコードブロックとして使用している場合、そのままの動作を維持します
+1. `renderCodeBlockPuml: true` を設定することで、`` ```plantuml `` および `` ```puml `` をPlantUMLダイアグラムとしてレンダリングできます
+
+```js
+module.exports = {
+  // ...other settings
+  themeConfig: {
+    plantuml: {
+      renderCodeBlockPuml: true,
+    },
+  },
+};
+```
+
+1. 有効化すると、`pumld`、`plantuml-diagram`、`plantuml`、`puml` の4つすべてのキーワードでPlantUMLレンダリングが行われます
 
 ```js
 module.exports = {
