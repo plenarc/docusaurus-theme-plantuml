@@ -51,3 +51,39 @@ test('Custom serverUrlDark is applied', () => {
     'serverUrlDark should be overridden with the custom value',
   );
 });
+
+test('Default renderCodeBlockPuml is false when not provided', () => {
+  const result = validateThemeConfig({
+    validate: (schema, config) => schema.validate(config, { convert: true }).value,
+    themeConfig: {},
+  });
+  assert.equal(
+    result.plantuml.renderCodeBlockPuml,
+    false,
+    'renderCodeBlockPuml should default to false',
+  );
+});
+
+test('renderCodeBlockPuml: true is accepted and preserved', () => {
+  const result = validateThemeConfig({
+    validate: (schema, config) => schema.validate(config, { convert: true }).value,
+    themeConfig: { plantuml: { renderCodeBlockPuml: true } },
+  });
+  assert.equal(
+    result.plantuml.renderCodeBlockPuml,
+    true,
+    'renderCodeBlockPuml should be true when explicitly set to true',
+  );
+});
+
+test('renderCodeBlockPuml: false is accepted and preserved', () => {
+  const result = validateThemeConfig({
+    validate: (schema, config) => schema.validate(config, { convert: true }).value,
+    themeConfig: { plantuml: { renderCodeBlockPuml: false } },
+  });
+  assert.equal(
+    result.plantuml.renderCodeBlockPuml,
+    false,
+    'renderCodeBlockPuml should be false when explicitly set to false',
+  );
+});

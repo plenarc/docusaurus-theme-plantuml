@@ -6,6 +6,7 @@ export const DEFAULT_THEME_CONFIG = {
     serverUrlLight: 'https://www.plantuml.com/plantuml/svg/',
     serverUrlDark: 'https://www.plantuml.com/plantuml/dsvg/',
     debug: false,
+    renderCodeBlockPuml: false,
   },
 };
 
@@ -13,6 +14,7 @@ const plantumlSchema = Joi.object({
   serverUrlLight: Joi.string().optional().default(DEFAULT_THEME_CONFIG.plantuml.serverUrlLight),
   serverUrlDark: Joi.string().optional().default(DEFAULT_THEME_CONFIG.plantuml.serverUrlDark),
   debug: Joi.boolean().optional().default(DEFAULT_THEME_CONFIG.plantuml.debug),
+  renderCodeBlockPuml: Joi.boolean().optional().default(false),
 });
 
 const ThemeConfigSchema = Joi.object({
