@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no actual publish)'
+        type: boolean
+        default: true
 
 jobs:
   publish:
@@ -28,15 +37,14 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 10
-          run_install: |
-            - recursive: true
-              args: [--frozen-lockfile]
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build project
         run: pnpm run build
 
       - name: Publish to npm
-        run: npm publish --access public --provenance
+        run: npm publish --access public --provenance ${{ (github.event_name == 'pull_request' || inputs.dry_run == true) && '--dry-run' || '' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
