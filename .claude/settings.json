@@ -2,18 +2,36 @@
   "permissions": {
     "allow": [
       "Bash(git status*)",
+      "Bash(git -C * status*)",
       "Bash(git log *)",
+      "Bash(git -C * log *)",
       "Bash(git diff *)",
+      "Bash(git -C * diff *)",
       "Bash(git show *)",
+      "Bash(git -C * show *)",
       "Bash(git branch *)",
+      "Bash(git -C * branch *)",
       "Bash(git stash *)",
+      "Bash(git -C * stash *)",
       "Bash(git add *)",
+      "Bash(git -C * add *)",
       "Bash(git checkout *)",
+      "Bash(git -C * checkout *)",
       "Bash(git fetch *)",
+      "Bash(git -C * fetch *)",
       "Bash(git pull *)",
+      "Bash(git -C * pull *)",
       "Bash(git push *)",
+      "Bash(git -C * push *)",
       "Bash(git mv *)",
-      "Bash(git rm *)"
+      "Bash(git -C * mv *)",
+      "Bash(git rm *)",
+      "Bash(git -C * rm *)",
+      "Bash(gh issue *)",
+      "Bash(gh pr *)",
+      "Bash(gh run *)",
+      "Bash(gh label *)",
+      "Bash(mise exec *)"
     ]
   }
 }
