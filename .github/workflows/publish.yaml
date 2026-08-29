@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - 'v*.*.*'
   pull_request:
     branches:
       - main
@@ -19,32 +17,55 @@ on:
 jobs:
   tag-release:
     name: Tag Release
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
+    outputs:
+      unpublished: ${{ steps.check.outputs.unpublished }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create and push version tag if missing
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check npm registry and tag if unpublished
+        id: check
         run: |
+          PACKAGE=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
           TAG="v${VERSION}"
-          if git ls-remote --tags origin | grep -q "refs/tags/${TAG}$"; then
-            echo "Tag ${TAG} already exists, skipping."
+
+          if npm view "${PACKAGE}@${VERSION}" version >/dev/null 2>&1; then
+            echo "unpublished=false" >> "$GITHUB_OUTPUT"
+            echo "${PACKAGE}@${VERSION} is already published to npm."
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git tag "${TAG}"
-            git push origin "${TAG}"
+            echo "unpublished=true" >> "$GITHUB_OUTPUT"
+            echo "${PACKAGE}@${VERSION} is not yet published to npm."
+
+            if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
+              if git ls-remote --tags origin | grep -q "refs/tags/${TAG}$"; then
+                echo "Tag ${TAG} already exists, skipping tag push."
+              else
+                git config user.name "github-actions[bot]"
+                git config user.email "github-actions[bot]@users.noreply.github.com"
+                git tag "${TAG}"
+                git push origin "${TAG}"
+              fi
+            else
+              echo "Not on main (ref=${GITHUB_REF}); skipping tag creation."
+            fi
           fi
 
   publish:
     name: Publish Package
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    needs: tag-release
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.tag-release.outputs.unpublished == 'true')
     runs-on: ubuntu-latest
 
     permissions:
