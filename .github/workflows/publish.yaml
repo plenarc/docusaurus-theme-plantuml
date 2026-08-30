@@ -36,6 +36,8 @@ jobs:
 
       - name: Check npm registry and tag if unpublished
         id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           PACKAGE=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
@@ -57,8 +59,14 @@ jobs:
                 git tag "${TAG}"
                 git push origin "${TAG}"
               fi
+
+              if gh release view "${TAG}" >/dev/null 2>&1; then
+                echo "Release ${TAG} already exists, skipping release creation."
+              else
+                gh release create "${TAG}" --title "${TAG}" --generate-notes
+              fi
             else
-              echo "Not on main (ref=${GITHUB_REF}); skipping tag creation."
+              echo "Not on main (ref=${GITHUB_REF}); skipping tag/release creation."
             fi
           fi
 
