@@ -14,9 +14,6 @@ assignees: ''
 1. 
 2. 
 
-### Completion criteria
-- [ ] 
-
 ## jp
 
 ### 概要
@@ -26,5 +23,6 @@ assignees: ''
 1. 
 2. 
 
-### 完了条件
+## Checklist
 - [ ] 
+  - 
