@@ -1,10 +1,6 @@
 import ErrorBoundary from '@docusaurus/ErrorBoundary';
-import {
-  ErrorBoundaryErrorMessageFallback,
-  useColorMode,
-  useThemeConfig,
-} from '@docusaurus/theme-common';
-import type { ReactNode } from 'react';
+import { ErrorBoundaryErrorMessageFallback, useThemeConfig } from '@docusaurus/theme-common';
+import { type ReactNode, useEffect, useState } from 'react';
 import { encodePlantUML } from '../../encoder';
 import type { PlantumlConfig, ThemeConfig } from '../../theme-plantuml';
 
@@ -12,12 +8,36 @@ export interface PlantUMLProps {
   value: string;
 }
 
+type ColorMode = 'light' | 'dark';
+
+function readColorMode(): ColorMode {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
+/**
+ * Reads the color mode from the `data-theme` attribute that Docusaurus sets on `<html>`.
+ * `useColorMode()` is avoided on purpose: when the consumer's package manager resolves
+ * `@docusaurus/theme-common` (a peer dependency) to a different copy than the one providing
+ * `<ColorModeProvider>`, the hook throws and breaks SSG (#45).
+ * Returns 'light' during SSR and the first client render so that hydration matches.
+ */
+function useDocumentColorMode(): ColorMode {
+  const [colorMode, setColorMode] = useState<ColorMode>('light');
+  useEffect(() => {
+    setColorMode(readColorMode());
+    const observer = new MutationObserver(() => setColorMode(readColorMode()));
+    observer.observe(document.documentElement, { attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+  return colorMode;
+}
+
 /**
  * PlantUML diagram component.
  * Renders a PlantUML diagram using different server URLs for light and dark modes.
  */
 function PlantUMLRenderer({ value }: PlantUMLProps): ReactNode {
-  const { colorMode } = useColorMode();
+  const colorMode = useDocumentColorMode();
   const docusaurusThemeConfig = useThemeConfig();
   const { plantuml }: ThemeConfig = docusaurusThemeConfig as ThemeConfig;
   const plantumlConfig: PlantumlConfig = plantuml || {

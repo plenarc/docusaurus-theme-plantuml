@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-theme-plantuml",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "PlantUML components for Docusaurus. Renders PlantUML diagrams in markdown using a PlantUML server.",
   "author": "plenarc",
   "license": "MIT",
@@ -47,6 +47,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@docusaurus/theme-common": "^3.0.0",
     "joi": "^18.2.1",
     "pako": "^2.1.0"
   },
@@ -54,7 +55,6 @@
     "@biomejs/biome": "2.4.15",
     "@docusaurus/core": "^3.10.1",
     "@docusaurus/module-type-aliases": "^3.10.1",
-    "@docusaurus/theme-common": "^3.10.1",
     "@docusaurus/tsconfig": "^3.10.1",
     "@docusaurus/types": "^3.10.1",
     "@types/react": "^19.2.3",
@@ -63,7 +63,6 @@
   },
   "peerDependencies": {
     "@docusaurus/core": "^3.0.0",
-    "@docusaurus/theme-common": "^3.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
