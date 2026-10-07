@@ -208,12 +208,12 @@ module.exports = {
 ## Compatibility
 ### en
 1. This theme is compatible with Docusaurus v3.9.2 and later versions
-1. Tested with Node.js 18.x and later
+1. Requires Node.js 22.x or later (tested on 22.x)
 1. Package manager: pnpm (recommended), npm, or yarn
 
 ### ja
 1. このテーマはDocusaurus v3.9.2以降のバージョンに対応しています
-1. Node.js 18.x以降でテスト済み
+1. Node.js 22.x以降が必要（22.x でテスト済み）
 1. パッケージマネージャー: pnpm(推奨)、npm、またはyarn
 
 ## Troubleshooting
