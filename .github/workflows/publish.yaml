@@ -74,7 +74,8 @@ jobs:
   publish:
     name: Publish Package
     needs: tag-release
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.tag-release.outputs.unpublished == 'true')
+    # PR: dry-run only when the version is unpublished (a PR without a bump has nothing new to publish)
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && needs.tag-release.outputs.unpublished == 'true') || (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.tag-release.outputs.unpublished == 'true')
     runs-on: ubuntu-latest
 
     permissions:
